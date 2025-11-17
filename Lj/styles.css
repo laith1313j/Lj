@@ -17,7 +17,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
     /* 🛑 تطبيق الصورة الجديدة كخلفية 🛑 */
-    background-image: url('https://ibb.co/spSmqkNf'); 
     background-color: #ffffffdc; /* لون احتياطي في حال فشل تحميل الصورة */
     background-size: cover; 
     background-attachment: fixed; 
