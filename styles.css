@@ -1,0 +1,267 @@
+/* styles.css */
+
+/* المتغيرات (Variables) - لم تتغير */
+:root {
+    --primary-color: #007bff;      /* أزرق ساطع، لون الأزرار والعناصر الرئيسية */
+    --secondary-color: #28a745;    /* أخضر، لون الأزرار الثانوية أو المميزة */
+    --background-light: #f8f9fa;   /* خلفية فاتحة جداً */
+    --text-dark: #343a40;          /* نص داكن */
+    --card-background: #ffffff;    /* خلفية البطاقة بيضاء */
+    --border-color: #dee2e6;       /* لون حدود خفيف */
+    --header-bg-color: #1a1a2e;    /* لون خلفية الشريط العلوي (داكن عميق) */
+    --header-text-color: #ffffff;  /* لون نص الشريط العلوي */
+}
+
+/* 💻 تنسيق الجسم مع الخلفية الجديدة */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* 🛑 تطبيق الصورة الجديدة كخلفية 🛑 */
+    background-color: #ffffffdc; /* لون احتياطي في حال فشل تحميل الصورة */
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center center; 
+    
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* الترويسة العلوية للموقع (شريط داكن عميق) */
+.main-header {
+    width: 100%;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    margin-bottom: 30px;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    /* التعديل الجمالي على اسم المشروع */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 
+                 0 0 10px rgba(0, 123, 255, 0.5); 
+    color: #fff; 
+}
+
+/* الروابط العامة (للتنقل) */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* حاوية المحتوى الرئيسية */
+.container {
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    margin: 20px;
+    width: 90%;
+    max-width: 700px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* تنسيق أزرار التنقل */
+.nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    padding: 15px 25px;
+    color: var(--header-text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* الألوان الخاصة بأزرار الصفحة الرئيسية */
+.nav-button.ai-button {
+    background-color: #ffc107; /* لون أصفر */
+    color: var(--text-dark);
+}
+.nav-button.ai-button:hover {
+    background-color: #e0a800;
+}
+
+.nav-button.calculator-button {
+    background-color: #28a745; /* لون أخضر */
+    color: var(--header-text-color);
+}
+.nav-button.calculator-button:hover {
+    background-color: #218838;
+}
+
+
+/* تنسيق الأيقونات داخل الأزرار */
+.nav-button .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+/* تنسيقات خاصة بصفحة الدردشة */
+.chat-container {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 30px;
+}
+#chat-box {
+    height: 400px;
+    overflow-y: auto;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.message {
+    padding: 8px 12px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+.user-message {
+    background-color: var(--primary-color);
+    color: white;
+    margin-left: auto; 
+    border-bottom-right-radius: 2px;
+}
+.ai-message {
+    background-color: #e9ecef;
+    color: var(--text-dark);
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+}
+#user-input {
+    width: calc(100% - 65px);
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-dark);
+    margin-right: 5px;
+}
+#send-button {
+    background-color: var(--primary-color);
+    color: white;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+#send-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* تنسيقات خاصة بالآلة الحاسبة */
+.calculator {
+    width: 350px;
+    margin-top: 30px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+.calculator-screen {
+    background-color: #e9ecef !important;
+    color: var(--text-dark) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    text-align: left;
+    height: 70px;
+    overflow-x: auto;
+}
+.calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.calculator-keys button {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+/* تخصيص ألوان الأزرار */
+.calculator-keys button {
+    background-color: #f0f0f0; 
+    color: var(--text-dark);
+}
+.calculator-keys button:hover {
+    background-color: #e0e0e0;
+}
+.operator {
+    background-color: #28a745 !important; /* أخضر */
+    color: white !important;
+}
+.operator:hover {
+    background-color: #218838 !important;
+}
+.control-key {
+    background-color: #dc3545 !important; /* أحمر */
+    color: white !important;
+}
+.control-key:hover {
+    background-color: #c82333 !important;
+}
+.equal-sign {
+    background-color: var(--primary-color) !important; /* أزرق */
+    color: white !important;
+}
+.equal-sign:hover {
+    background-color: #0056b3 !important;
+}
+
+.back-link {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+.back-link:hover {
+    color: var(--secondary-color);
+}
