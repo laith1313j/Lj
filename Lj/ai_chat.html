@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>محادثة الذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-header">
+        <h1>محادثة الذكاء الاصطناعي 🤖</h1>
+    </div>
+    
+    <a href="index.html" class="back-link">العودة إلى القائمة الرئيسية</a>
+
+    <div class="chat-container">
+        <div id="chat-box">
+            <div class="message ai-message">مرحباً بك في خدمة الذكاء الاصطناعي من تصميم ليث. اسألني أي شيء!</div>
+        </div>
+        
+        <div style="display: flex; margin-top: 15px;">
+            <input type="text" id="user-input" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key === 'Enter') sendMessage()">
+            <button id="send-button" onclick="sendMessage()">إرسال</button>
+        </div>
+    </div>
+
+    <script>
+        // *** ضع رابط تطبيق الويب Apps Script الخاص بك هنا ***
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvatN8IZ6QB0qxMUn0L_S1WZh_jIOiZ_cM34jVD0fzE4IpcHEQUCGXrhuojB5iawng7w/exec'; // مثال: 'https://script.google.com/macros/s/AKfycb...exec'
+
+        function sendMessage() {
+            const inputElement = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = inputElement.value.trim();
+
+            if (message === "") return;
+
+            // 1. عرض رسالة المستخدم فوراً
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.textContent = message;
+            chatBox.appendChild(userDiv);
+
+            // مسح صندوق الإدخال فوراً
+            inputElement.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight; // التمرير للأسفل
+
+            // 2. إظهار رسالة "جاري الكتابة..."
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message ai-message';
+            loadingDiv.id = 'loading-message';
+            loadingDiv.textContent = 'جاري الكتابة...';
+            chatBox.appendChild(loadingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; 
+
+            // 3. الاتصال بتطبيق الويب (Apps Script)
+            fetch(`${APPS_SCRIPT_URL}?message=${encodeURIComponent(message)}`)
+                .then(response => response.text())
+                .then(aiResponse => {
+                    // إزالة رسالة التحميل
+                    loadingDiv.remove();
+
+                    // عرض رد الذكاء الاصطناعي
+                    const aiDiv = document.createElement('div');
+                    aiDiv.className = 'message ai-message';
+                    aiDiv.textContent = aiResponse;
+                    chatBox.appendChild(aiDiv);
+                    
+                    chatBox.scrollTop = chatBox.scrollHeight; // التمرير للأسفل
+                })
+                .catch(error => {
+                    loadingDiv.remove();
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'message ai-message';
+                    errorDiv.textContent = `حدث خطأ في الاتصال بالذكاء الاصطناعي. قد تكون المشكلة في رابط Apps Script أو صلاحيات الوصول.`;
+                    chatBox.appendChild(errorDiv);
+                    console.error("Fetch Error:", error);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+        }
+    </script>
+</body>
+</html>
